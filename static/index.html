@@ -4,23 +4,95 @@
 <head>
   <meta charset="utf-8">
   <title>PDF Summarizer</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:40px auto;max-width:800px;padding:0 20px;}
-    h1{color:#333;text-align:center;}
-    #uploader{margin:20px 0;text-align:center;}
-    .btn{background:#007bff;color:#fff;border:none;padding:10px 20px;font-size:16px;border-radius:4px;cursor:pointer;}
-    .btn:disabled{background:#999;cursor:not-allowed;}
-    #result{margin-top:30px;white-space:pre-wrap;border:1px solid #ddd;padding:20px;border-radius:4px;min-height:150px;}
+    /* Reset */
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Inter',Arial,Helvetica,sans-serif;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:#F5F7FA;
+      padding:20px;
+      color:#333;
+    }
+    .card{
+      background:#fff;
+      width:100%;
+      max-width:600px;
+      border-radius:12px;
+      padding:40px 30px 50px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.05);
+      text-align:center;
+    }
+    .logo{
+      width:160px;
+      margin:0 auto 25px;
+      display:block;
+    }
+    h1{
+      font-size:28px;
+      margin-bottom:10px;
+      font-weight:600;
+      color:#111827;
+    }
+    p.subtitle{color:#6B7280;margin-bottom:30px;}
+
+    #uploader{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:12px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    input[type="file"]{
+      font-size:15px;
+      padding:10px;
+    }
+    .btn{
+      background:#2563EB;
+      color:#fff;
+      border:none;
+      padding:12px 24px;
+      font-size:16px;
+      border-radius:6px;
+      cursor:pointer;
+      transition:background 0.2s;
+    }
+    .btn:hover:not(:disabled){background:#1D4ED8;}
+    .btn:disabled{background:#9CA3AF;cursor:not-allowed;}
+
+    #result{
+      margin-top:20px;
+      white-space:pre-wrap;
+      border:1px solid #E5E7EB;
+      padding:20px;
+      border-radius:6px;
+      min-height:150px;
+      text-align:left;
+      background:#F9FAFB;
+    }
   </style>
 </head>
 <body>
-  <h1>PDF Summarizer</h1>
-  <div id="uploader">
-    <input type="file" id="pdf" accept="application/pdf">
-    <button class="btn" id="submitBtn" onclick="upload()">Resumir</button>
+  <div class="card">
+    <img src="https://cdn.prod.website-files.com/65d6fa22355e11a73557d019/65ddb97b622482246f2296f4_Group.png" alt="Logo" class="logo"/>
+    <h1>PDF Summarizer</h1>
+    <p class="subtitle">Sube un archivo PDF y obtén un resumen al instante.</p>
+
+    <div id="uploader">
+      <input type="file" id="pdf" accept="application/pdf">
+      <button class="btn" id="submitBtn" onclick="upload()">Resumir</button>
+    </div>
+
+    <h2 style="text-align:left;margin-bottom:10px;">Resumen</h2>
+    <div id="result">Selecciona un PDF y presiona "Resumir".</div>
   </div>
-  <h2>Resumen</h2>
-  <div id="result">Selecciona un PDF y presiona "Resumir".</div>
 
   <script>
     async function upload() {
