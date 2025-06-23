@@ -1,0 +1,61 @@
+<!-- Simple front-end for PDF Summarizer -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>PDF Summarizer</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:40px auto;max-width:800px;padding:0 20px;}
+    h1{color:#333;text-align:center;}
+    #uploader{margin:20px 0;text-align:center;}
+    .btn{background:#007bff;color:#fff;border:none;padding:10px 20px;font-size:16px;border-radius:4px;cursor:pointer;}
+    .btn:disabled{background:#999;cursor:not-allowed;}
+    #result{margin-top:30px;white-space:pre-wrap;border:1px solid #ddd;padding:20px;border-radius:4px;min-height:150px;}
+  </style>
+</head>
+<body>
+  <h1>PDF Summarizer</h1>
+  <div id="uploader">
+    <input type="file" id="pdf" accept="application/pdf">
+    <button class="btn" id="submitBtn" onclick="upload()">Resumir</button>
+  </div>
+  <h2>Resumen</h2>
+  <div id="result">Selecciona un PDF y presiona "Resumir".</div>
+
+  <script>
+    async function upload() {
+      const fileInput = document.getElementById('pdf');
+      const resultDiv = document.getElementById('result');
+      const button = document.getElementById('submitBtn');
+
+      if (!fileInput.files.length) {
+        alert('Selecciona un archivo PDF primero.');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      button.disabled = true;
+      resultDiv.textContent = 'Procesando… por favor espera.';
+
+      try {
+        const response = await fetch('/summarize', { method: 'POST', body: formData });
+        if (!response.ok) {
+          throw new Error(`Error del servidor: ${response.statusText}`);
+        }
+        const data = await response.json();
+        if (data.success === false) {
+          throw new Error(data.error || 'Error desconocido');
+        }
+        resultDiv.textContent = data.summary;
+      } catch (err) {
+        resultDiv.textContent = 'Ocurrió un error: ' + err.message;
+      } finally {
+        button.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html> 

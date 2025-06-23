@@ -1,0 +1,98 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Documentation
+*.md
+docs/
+
+# Test files
+test_*.py
+*_test.py
+tests/
+
+# Examples and samples
+example_usage.py
+examples/
+samples/
+
+# Large files that aren't needed
+*.pdf
+*.docx
+*.xlsx
+*.html
+*.php
+*.js
+*.png
+*.icns
+
+# Directories with data/configs
+GitHub/
+Blue Bull/
+Encomenda/
+Kit Digital/
+RD/
+Info Financiera/
+Reports 4T/
+CDTI Financiamiento/
+4Founders/
+react-app/
+Nazca/
+Super Agent/
+Propuestas Comerciales/
+
+# Git
+.git
+.gitignore
+
+# Include static front-end files in Docker context
+!static/
+!static/*.html 
